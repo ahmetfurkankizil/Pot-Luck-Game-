@@ -4,7 +4,7 @@ public class GamePanel extends JPanel {
     private ButtonCollection buttons;
     private JLabel statusLabel;
 
-    public GamePanel(){
+    public GamePanel(int row, int columns, int prizeCount, int bombCount){
         super();
 
         //Outer Panel
@@ -16,13 +16,14 @@ public class GamePanel extends JPanel {
         this.statusLabel.setPreferredSize(new Dimension(500,100));
 
         //Core Class
-        this.buttons = new ButtonCollection(statusLabel);
+        this.buttons = new ButtonCollection(statusLabel, row, columns, prizeCount, bombCount);
+        int numberOfButtonsToBeAdded = row*columns;
 
         //Button Panel
         JPanel buttonPanel = new JPanel();
-        GridLayout buttonPanelLayout = new GridLayout(4,4);
+        GridLayout buttonPanelLayout = new GridLayout(row,columns);
         buttonPanel.setLayout(buttonPanelLayout);
-        for (int i = 0; i <16; i++) {
+        for (int i = 0; i <numberOfButtonsToBeAdded; i++) {
             buttonPanel.add(buttons.getButton(i));
         }
 
